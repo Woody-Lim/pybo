@@ -153,7 +153,7 @@ LOGGING = {
     'handlers': {
         'console': {
             'level': 'INFO',
-            'filter': ['require_debug_true'],
+            'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
             'file': {
                 'level': 'INFO',
@@ -179,6 +179,10 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console', 'mail_admins', 'file'],
+            'level': 'INFO',
+        },
+        'django.server': {
+            'handlers': ['django.server'],
             'level': 'INFO',
             'propagate': False,
         },
