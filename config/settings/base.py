@@ -129,6 +129,7 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 # 로깅 설정
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -148,22 +149,13 @@ LOGGING = {
         },
         'standard': {
             'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
-        },
+        }
     },
     'handlers': {
         'console': {
             'level': 'INFO',
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
-            'file': {
-                'level': 'INFO',
-                'filters': ['require_debug_false'],
-                'class': 'logging.handlers.RotatingFileHandler',
-                'filename': BASE_DIR / 'logs/mysite.log',
-                'maxBytes': 1024*1024*5, # 5MB
-                'backupCount': 5,
-                'formatter': 'standard',
-            },
         },
         'django.server': {
             'level': 'INFO',
@@ -174,7 +166,15 @@ LOGGING = {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        'file': {
+            'level': 'INFO',
+            'filters': ['require_debug_false'],
+            'filename': BASE_DIR / 'logs/mysite.log',
+            'maxBytes': 1024*1024*5, # 5MB
+            'backupCount': 5,
+            'formatter': 'standard',
+        },
     },
     'loggers': {
         'django': {
@@ -185,6 +185,7 @@ LOGGING = {
             'handlers': ['django.server'],
             'level': 'INFO',
             'propagate': False,
-        },
+        }
     }
+
 }
